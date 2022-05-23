@@ -1,22 +1,22 @@
 const express = require('express');
 const path = require('path');
+const config = require('./config');
 
 // This is the root file of the routing structure
 const indexRouter = require('./routes/index');
 
 const app = express();
-const port = 3000;
 const mongoose = require('mongoose'); // DB connection
+const { logger }  = config;
 
-var mongoDB = 'mongodb://localhost:37017/user-mgm';
-
+const dsn = config.database.addr+':'+config.database.port+'/'+config.database.name;
 mongoose   
-  .connect(mongoDB)
+  .connect(dsn)
   .then(() => {
-    console.log('Connected to MongoDB');
+    logger.info(`MongoDB connected on port ${config.database.port}`);
   })
   .catch((error) => {
-    console.log(error);
+    logger.fatal(error);
   })
 
 
@@ -28,8 +28,8 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, './public')));
 app.use('/', indexRouter());
 
-app.listen(port, () => {
-  console.log(`Express server listening on port ${port}`)
+app.listen(config.port, () => {
+  logger.info(`Express server listening on port ${config.port}`)
 })
 
 
