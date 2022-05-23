@@ -20,13 +20,8 @@
     z-index: 1;
   }
   
-  #signup .btn-github {
-    color: #fff;
-    background-color: #444;
-    border-color: rgba(0, 0, 0, 0.2);
-  }
-  
   .container {
     margin-top: 70px;
   }
+  
   
