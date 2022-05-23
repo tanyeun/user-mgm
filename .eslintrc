@@ -1,0 +1,17 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint", "prettier"],
+    "extends": ["eslint:recommended", "google", "prettier"],
+    "parserOptions": {
+      "ecmaVersion": 2016,
+      "sourceType": "module"
+    },
+    "env": {
+      "es6": true,
+      "node": true,
+      "mocha": true
+    },
+    "rules": {
+      "prettier/prettier": ["error"]
+    }
+  }
